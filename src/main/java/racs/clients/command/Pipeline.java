@@ -16,6 +16,48 @@ public class Pipeline extends Command {
         this.commands = new ArrayList<>();
     }
 
+    public Pipeline gain(double gain) {
+        String command = String.format("GAIN %f", gain);
+        commands.add(command);
+        return this;
+    }
+
+    public Pipeline trim(double left, double right) {
+        String command = String.format("TRIM %f %f", left, right);
+        commands.add(command);
+        return this;
+    }
+
+    public Pipeline fade(double in, double out) {
+        String command = String.format("FADE %f, %f", in, out);
+        commands.add(command);
+        return this;
+    }
+
+    public Pipeline pan(double pan) {
+        String command = String.format("PAN %f", pan);
+        commands.add(command);
+        return this;
+    }
+
+    public Pipeline pad(double left, double right) {
+        String command = String.format("PAD %f %f", left, right);
+        commands.add(command);
+        return this;
+    }
+
+    public Pipeline clip(int min, int max) {
+        String command = String.format("CLIP %d %d", min, max);
+        commands.add(command);
+        return this;
+    }
+
+    public Pipeline split(int channel) {
+        String command = String.format("SPLIT %d", channel);
+        commands.add(command);
+        return this;
+    }
+
     public Pipeline range(String streamId, double start, double duration) {
         String command = String.format("RANGE '%s' %f %f", streamId, start, duration);
         commands.add(command);
