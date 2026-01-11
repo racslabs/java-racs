@@ -2,15 +2,15 @@ package racs.clients.stream;
 
 import org.apache.commons.codec.digest.MurmurHash3;
 import racs.clients.exception.RacsException;
-import racs.clients.util.SessionId;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.zip.CRC32C;
 
 public class Frame {
+    public static final byte[] CHUNK_ID = new byte[] {'r', 's', 'p'};
+
     private static final int HEADER_SIZE = 34;
-    private static final byte[] CHUNK_ID = new byte[] {'r', 's', 'p'};
 
     private final byte[] sessionId;
     private final long streamId;

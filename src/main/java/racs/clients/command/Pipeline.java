@@ -29,7 +29,7 @@ public class Pipeline extends Command {
     }
 
     public Pipeline fade(double in, double out) {
-        String command = String.format("FADE %f, %f", in, out);
+        String command = String.format("FADE %f %f", in, out);
         commands.add(command);
         return this;
     }
@@ -118,7 +118,6 @@ public class Pipeline extends Command {
 
     public Object execute() throws RacsException, IOException, InterruptedException {
         String joined = String.join(" |> ", commands);
-        System.out.println(joined);
         return this.executeCommand(joined);
     }
 

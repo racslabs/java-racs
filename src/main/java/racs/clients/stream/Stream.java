@@ -4,7 +4,6 @@ import com.github.luben.zstd.Zstd;
 import org.msgpack.core.MessageBufferPacker;
 import org.msgpack.core.MessagePack;
 
-import org.msgpack.value.ValueFactory;
 import racs.clients.command.Command;
 import racs.clients.pack.Unpacker;
 import racs.clients.exception.RacsException;
@@ -17,7 +16,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Stream extends Command {
@@ -91,7 +89,7 @@ public class Stream extends Command {
                 socket = connectionPool.borrowSocket();
 
                 ByteArrayOutputStream buf = new ByteArrayOutputStream();
-                buf.write(new byte[] {'r', 's', 'p'});
+                buf.write(Frame.CHUNK_ID);
 
                 MessageBufferPacker packer = MessagePack.newDefaultBufferPacker();
                 packer.packArrayHeader(frames.size());
@@ -139,9 +137,8 @@ public class Stream extends Command {
 
             frames.add(frame);
 
-            if (frames.size() == batchSize) {
+            if (frames.size() == batchSize)
                 flush.run();
-            }
         }
 
         flush.run();
