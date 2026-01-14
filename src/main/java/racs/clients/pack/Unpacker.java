@@ -5,7 +5,6 @@ import org.msgpack.core.MessageUnpacker;
 import org.msgpack.value.ValueType;
 import racs.clients.exception.RacsException;
 import racs.clients.types.Complex64;
-import racs.clients.types.ResultType;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -26,39 +25,27 @@ public class Unpacker {
         if (valueType != ValueType.STRING)
             throw new RacsException("Invalid type");
 
+        Object result = null;
         String type = unpacker.unpackString();
 
-        if (type.equals(ResultType.STRING.getValue()))
-            return unpackString(unpacker);
-        if (type.equals(ResultType.BOOLEAN.getValue()))
-            return unpackBoolean(unpacker);
-        if (type.equals(ResultType.LONG.getValue()))
-            return unpackLong(unpacker);
-        if (type.equals(ResultType.DOUBLE.getValue()))
-            return unpackDouble(unpacker);
-        if (type.equals(ResultType.LIST.getValue()))
-            return unpackList(unpacker, arraySize - 1);
-        if (type.equals(ResultType.TIME.getValue()))
-            return unpackTime(unpacker);
-        if (type.equals(ResultType.U8V.getValue()) ||
-                type.equals(ResultType.I8V.getValue()))
-            return unpackByteArray(unpacker);
-        if (type.equals(ResultType.U16V.getValue()) ||
-                type.equals(ResultType.I16V.getValue()))
-            return unpackShortArray(unpacker);
-        if (type.equals(ResultType.U32V.getValue()) ||
-                type.equals(ResultType.I32V.getValue()))
-            return unpackIntArray(unpacker);
-        if (type.equals(ResultType.F32V.getValue()))
-            return unpackFloatArray(unpacker);
-        if (type.equals(ResultType.C64V.getValue()))
-            return unpackComplex64Array(unpacker);
-        if (type.equals(ResultType.NULL.getValue()))
-            return unpackNull(unpacker);
-        if (type.equals(ResultType.ERROR.getValue()))
-            unpackError(unpacker);
+        switch (type) {
+            case "string"       -> result = unpackString(unpacker);
+            case "bool"         -> result = unpackBoolean(unpacker);
+            case "int"          -> result = unpackLong(unpacker);
+            case "float"        -> result = unpackDouble(unpacker);
+            case "list"         -> result = unpackList(unpacker, arraySize - 1);
+            case "time"         -> result = unpackTime(unpacker);
+            case "u8v" , "s8v"  -> result = unpackByteArray(unpacker);
+            case "u16v", "s16v" -> result = unpackShortArray(unpacker);
+            case "u32v", "s32v" -> result = unpackIntArray(unpacker);
+            case "f32v"         -> result = unpackFloatArray(unpacker);
+            case "c64v"         -> result = unpackComplex64Array(unpacker);
+            case "null"         -> result = unpackNull(unpacker);
+            case "error"        -> unpackError(unpacker);
+            default             -> throw new RacsException("Error unpacking response");
+        }
 
-        throw new RacsException("Error unpacking response");
+        return result;
     }
 
     private String unpackString(MessageUnpacker unpacker) throws IOException {
@@ -88,6 +75,8 @@ public class Unpacker {
 
     private short[] unpackShortArray(MessageUnpacker unpacker) throws IOException {
         byte[] bytes = unpackByteArray(unpacker);
+        if (bytes == null) return new short[0];
+
         ByteBuffer buf = ByteBuffer.wrap(bytes).order(ByteOrder.LITTLE_ENDIAN);
 
         short[] data = new short[bytes.length / 2];
@@ -100,6 +89,8 @@ public class Unpacker {
 
     private int[] unpackIntArray(MessageUnpacker unpacker) throws IOException {
         byte[] bytes = unpackByteArray(unpacker);
+        if (bytes == null) return new int[0];
+
         ByteBuffer buf = ByteBuffer.wrap(bytes).order(ByteOrder.LITTLE_ENDIAN);
 
         int[] data = new int[bytes.length / 4];
@@ -112,6 +103,8 @@ public class Unpacker {
 
     private float[] unpackFloatArray(MessageUnpacker unpacker) throws IOException {
         byte[] bytes = unpackByteArray(unpacker);
+        if (bytes == null) return new float[0];
+
         ByteBuffer buf = ByteBuffer.wrap(bytes).order(ByteOrder.LITTLE_ENDIAN);
 
         float[] data = new float[bytes.length / 4];
@@ -124,6 +117,8 @@ public class Unpacker {
 
     private Complex64[] unpackComplex64Array(MessageUnpacker unpacker) throws IOException {
         byte[] bytes = unpackByteArray(unpacker);
+        if (bytes == null) return new Complex64[0];
+
         ByteBuffer buf = ByteBuffer.wrap(bytes).order(ByteOrder.LITTLE_ENDIAN);
 
         Complex64[] data = new Complex64[bytes.length / 8];
@@ -158,5 +153,5 @@ public class Unpacker {
 
         return list;
     }
-
 }
+
