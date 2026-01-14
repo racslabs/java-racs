@@ -83,7 +83,7 @@ Pipeline pipeline = racs.pipeline();
 
 // Extract PCM data
 // Encode the audio to MP3
-byte[] result = (byte[]) pipeline.range("vocals", 0.0, 30.0)
+byte[] result = (byte[]) pipeline.range("vocals", 0.0, 30.0) // stream-id, start (seconds), duration (seconds)
         .encode("audio/wav")
         .execute();
 
