@@ -1,10 +1,10 @@
-package racs.clients.pack;
+package com.racslabs.pack;
 
 import org.msgpack.core.MessagePack;
 import org.msgpack.core.MessageUnpacker;
 import org.msgpack.value.ValueType;
-import racs.clients.exception.RacsException;
-import racs.clients.types.Complex64;
+import com.racslabs.exception.RacsException;
+import com.racslabs.types.Complex64;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;

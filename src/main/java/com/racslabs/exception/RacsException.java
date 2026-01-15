@@ -1,4 +1,4 @@
-package racs.clients.exception;
+package com.racslabs.exception;
 
 public class RacsException extends Exception {
 

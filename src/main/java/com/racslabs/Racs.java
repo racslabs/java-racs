@@ -1,9 +1,9 @@
-package racs.clients;
+package com.racslabs;
 
-import racs.clients.command.Command;
-import racs.clients.command.Pipeline;
-import racs.clients.socket.ConnectionPool;
-import racs.clients.stream.Stream;
+import com.racslabs.command.Command;
+import com.racslabs.command.Pipeline;
+import com.racslabs.socket.ConnectionPool;
+import com.racslabs.stream.Stream;
 
 import java.io.IOException;
 

@@ -1,16 +1,16 @@
-package racs.clients.stream;
+package com.racslabs.stream;
 
 import com.github.luben.zstd.Zstd;
 import org.msgpack.core.MessageBufferPacker;
 import org.msgpack.core.MessagePack;
 
-import racs.clients.command.Command;
-import racs.clients.pack.Unpacker;
-import racs.clients.exception.RacsException;
-import racs.clients.socket.SocketHandler;
-import racs.clients.socket.ConnectionPool;
-import racs.clients.util.Pcm;
-import racs.clients.util.SessionId;
+import com.racslabs.command.Command;
+import com.racslabs.pack.Unpacker;
+import com.racslabs.exception.RacsException;
+import com.racslabs.socket.SocketHandler;
+import com.racslabs.socket.ConnectionPool;
+import com.racslabs.util.Pcm;
+import com.racslabs.util.SessionId;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

@@ -1,9 +1,9 @@
-package racs.clients.command;
+package com.racslabs.command;
 
-import racs.clients.pack.Unpacker;
-import racs.clients.exception.RacsException;
-import racs.clients.socket.SocketHandler;
-import racs.clients.socket.ConnectionPool;
+import com.racslabs.pack.Unpacker;
+import com.racslabs.exception.RacsException;
+import com.racslabs.socket.SocketHandler;
+import com.racslabs.socket.ConnectionPool;
 
 import java.io.IOException;
 import java.net.Socket;

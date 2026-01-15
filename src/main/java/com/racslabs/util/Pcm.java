@@ -1,4 +1,4 @@
-package racs.clients.util;
+package com.racslabs.util;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;

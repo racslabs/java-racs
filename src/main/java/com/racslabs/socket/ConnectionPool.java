@@ -1,4 +1,4 @@
-package racs.clients.socket;
+package com.racslabs.socket;
 
 import java.io.IOException;
 import java.net.Socket;

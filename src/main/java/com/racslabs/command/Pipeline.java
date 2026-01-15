@@ -1,7 +1,7 @@
-package racs.clients.command;
+package com.racslabs.command;
 
-import racs.clients.exception.RacsException;
-import racs.clients.socket.ConnectionPool;
+import com.racslabs.exception.RacsException;
+import com.racslabs.socket.ConnectionPool;
 
 import java.io.IOException;
 import java.util.ArrayList;

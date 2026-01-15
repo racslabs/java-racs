@@ -8,7 +8,7 @@
 To open a connection, simply create a new ``Racs`` instance and provide the host and port.
 
 ```java
-import racs.clients.Racs;
+import com.racslabs.Racs;
 
 Racs racs = new Racs("localhost", 6381);
 ```
@@ -20,7 +20,7 @@ In the below example, a new audio stream is created and opened. Then PCM data is
 and streamed to the RACS server.
 
 ```java
-import racs.clients.Racs;
+import com.racslabs.Racs;
 
 // Connect to the RACS server
 Racs racs = new Racs("localhost", 6381);
@@ -55,7 +55,7 @@ racs.stream("vocals").execute(data);
 Stream ids stored in RACS can be queried using the ``list`` command. ``list`` takes a glob pattern and returns a `List<String>` object of streams ids matching the pattern.
 
 ```java
-import racs.clients.Racs;
+import com.racslabs.Racs;
 
 // Connect to the RACS server
 Racs racs = new Racs("localhost", 6381);
@@ -71,7 +71,8 @@ List<String> result = (List<String>)pipeline.list("*").execute();
 The below example extracts a 30-second PCM audio segment using the ``range`` command. It then encodes the data to MP3 and writes the resulting bytes to a file.
 
 ```java
-import racs.clients.Racs;
+import com.racslabs.Racs;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -100,7 +101,7 @@ try (FileOutputStream fos = new FileOutputStream("vocals.wav")) {
 Stream metadata can be retrieved using the ``meta`` command. ``meta`` takes the stream id and metadata attribute as parameters.
 
 ```java
-import racs.clients.Racs;
+import com.racslabs.Racs;
 
 // Connect to the RACS server
 Racs racs = new Racs("localhost", 6381);
@@ -127,11 +128,11 @@ The supported metadata attributes are:
 To execute raw command strings, use the ``executeCommand`` function.
 
 ```java
-import racs.clients.Racs;
+import com.racslabs.Racs;
 
 Racs racs = new Racs("localhost", 6381);
 
-long result = (long)racs.executeCommand("EVAL '(+ 1 2 3)'");
+long result = (long) racs.executeCommand("EVAL '(+ 1 2 3)'");
 ```
 
 Refer to the documentation in [RACS](https://github.com/racslabs/racs) for the commands.

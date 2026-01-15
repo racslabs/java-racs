@@ -1,7 +1,7 @@
-package racs.clients.stream;
+package com.racslabs.stream;
 
 import org.apache.commons.codec.digest.MurmurHash3;
-import racs.clients.exception.RacsException;
+import com.racslabs.exception.RacsException;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
