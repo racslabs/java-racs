@@ -21,6 +21,7 @@ and streamed to the RACS server.
 
 ```java
 import com.racslabs.Racs;
+import com.racslabs.command.Pipeline;
 
 // Connect to the RACS server
 Racs racs = new Racs("localhost", 6381);
@@ -56,6 +57,7 @@ Stream ids stored in RACS can be queried using the ``list`` command. ``list`` ta
 
 ```java
 import com.racslabs.Racs;
+import com.racslabs.command.Pipeline;
 
 // Connect to the RACS server
 Racs racs = new Racs("localhost", 6381);
@@ -72,6 +74,7 @@ The below example extracts a 30-second PCM audio segment using the ``range`` com
 
 ```java
 import com.racslabs.Racs;
+import com.racslabs.command.Pipeline;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -102,6 +105,7 @@ Stream metadata can be retrieved using the ``meta`` command. ``meta`` takes the 
 
 ```java
 import com.racslabs.Racs;
+import com.racslabs.command.Pipeline;
 
 // Connect to the RACS server
 Racs racs = new Racs("localhost", 6381);
