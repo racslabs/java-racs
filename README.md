@@ -3,6 +3,19 @@
 **java-racs** is the java client library for [RACS](https://github.com/racslabs/racs).
 
 
+## Installation
+
+To install java-racs, add the following dependency to your `pom.xml`:
+
+```xml
+<dependency>
+    <groupId>com.racslabs</groupId>
+    <artifactId>racs</artifactId>
+    <version>0.1.0</version>
+</dependency>
+```
+
+
 ## Basic Operations
 
 To open a connection, simply create a new ``Racs`` instance and provide the host and port.
